@@ -37,9 +37,10 @@ export default function Home() {
               </div>
               <div className="social-icons">
                 <Link
-                  as="link"
+                  as=""
                   href="https://www.linkedin.com/in/bbinmaharjan"
                   target="_blank"
+                  passHref
                 >
                   <BsLinkedin size={"20px"} />
                 </Link>
