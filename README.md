@@ -1,7 +1,8 @@
 # My Website
-<img src= "screenshots/MyApp.png" width="1000px" height="1000px">
 
-### Link 
+<img src= "/public/screen/capture.png" width="1000px" height="1000px">
+
+### Link
 
 https://bibinmaharjan.com.np
 
