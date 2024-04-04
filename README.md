@@ -1,3 +1,10 @@
+# My Website
+<img src= "screenshots/MyApp.png" width="1000px" height="1000px">
+
+### Link 
+
+https://bibinmaharjan.com.np
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
