@@ -53,14 +53,14 @@ export default function Home() {
               <h2 className="role-text">
                 <TypeAnimation
                   sequence={[
-                    "Frontend Engineer",
+                    "Software Engineer / Frontend Developer",
                     2000,
-                    "React & Next.js Specialist",
+                    "React & Next JavaScript Specialist",
                     2000,
                     "Enterprise Banking Systems Developer",
                     2000,
                   ]}
-                  speed={50}
+                  speed={20}
                   repeat={Infinity}
                 />
               </h2>
