@@ -2,12 +2,21 @@ import StyledComponentsRegistry from "@/lib/registry";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "My Portfolio",
-  description: "Software Engineer portfolio",
+export const metadata: Metadata = {
+  title: "Bibin Maharjan | Software Engineer",
+  description:
+    "Portfolio of Bibin Maharjan, Software Engineer with 4+ years of frontend experience in enterprise applications.",
+  openGraph: {
+    title: "Bibin Maharjan | Software Engineer",
+    description:
+      "Building scalable, high-performance web applications with modern frontend technologies.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({
@@ -18,19 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-D5CHQ0CKEX"
-        ></script>
-        <script>
-          {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-D5CHQ0CKEX');
-          `}
-        </script>
         <script type="text/javascript">
           {`
             ((function(c,l,a,r,i,t,y){
@@ -41,7 +37,7 @@ export default function RootLayout({
         `}
         </script>
       </head>
-      <body>
+      <body className={inter.className}>
         <GoogleAnalytics gaId="G-D5CHQ0CKEX" />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
