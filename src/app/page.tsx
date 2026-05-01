@@ -11,6 +11,7 @@ import {
   BsSunFill,
 } from "react-icons/bs";
 import UserImage from "../../public/images/user.gif";
+import MyImage from "../../public/images/me.JPG";
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
@@ -221,7 +222,7 @@ export default function Home() {
           <div className="flex items-start justify-between gap-3">
             <div className="hidden w-full max-w-[160px] overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-panel dark:border-slate-800 dark:bg-slate-900 md:block">
               <Image
-                src={UserImage}
+                src={MyImage}
                 alt="Bibin Maharjan profile"
                 className="h-auto w-full rounded-xl object-cover"
                 priority
@@ -507,10 +508,10 @@ export default function Home() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-panel dark:border-slate-800 dark:bg-slate-900">
             <p className="text-sm text-slate-500">Email</p>
             <a
-              href="mailto:bibin.maharjan@amniltech.com"
+              href="mailto:bbinmaharjan@gmail.com"
               className="mt-2 block font-medium text-brand-600 dark:text-brand-300"
             >
-              bibin.maharjan@amniltech.com
+              bbinmaharjan@gmail.com
             </a>
             <p className="mt-5 text-sm text-slate-500">Mobile</p>
             <a href="tel:9843772318" className="mt-2 block font-medium">
@@ -521,7 +522,7 @@ export default function Home() {
           </div>
           <form
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-panel dark:border-slate-800 dark:bg-slate-900"
-            action="mailto:bibin.maharjan@amniltech.com"
+            action="mailto:bbinmaharjan@gmail.com"
             method="post"
             encType="text/plain"
           >
