@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      <body className={inter.className}>
         <Script id="clarity-analytics" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
@@ -37,8 +37,6 @@ export default function RootLayout({
     })(window, document, "clarity", "script", "lrdn2504u8");
           `}
         </Script>
-      </head>
-      <body className={inter.className}>
         <GoogleAnalytics gaId="G-D5CHQ0CKEX" />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
