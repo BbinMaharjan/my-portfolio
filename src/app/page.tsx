@@ -11,7 +11,7 @@ import {
   BsSunFill,
 } from "react-icons/bs";
 import UserImage from "../../public/images/user.gif";
-import MyImage from "../../public/images/me.JPG";
+import MyImage from "../../public/images/me.jpg";
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
