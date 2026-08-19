@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script id="clarity-analytics" type="text/javascript">
+        <Script id="clarity-analytics" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -36,7 +36,7 @@ export default function RootLayout({
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "lrdn2504u8");
           `}
-        </script>
+        </Script>
       </head>
       <body className={inter.className}>
         <GoogleAnalytics gaId="G-D5CHQ0CKEX" />

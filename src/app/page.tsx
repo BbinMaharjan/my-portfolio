@@ -227,6 +227,7 @@ export default function Home() {
                 className="h-auto w-full rounded-xl object-cover"
                 width={160}
                 height={160}
+                unoptimized
                 priority
               />
             </div>
