@@ -11,7 +11,6 @@ import {
   BsSunFill,
 } from "react-icons/bs";
 
-
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
 type Project = {
@@ -173,6 +172,8 @@ export default function Home() {
             <div className="h-9 w-9 overflow-hidden rounded-full border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900">
               <Image
                 src="/images/user.gif"
+                width={36}
+                height={36}
                 alt="Bibin Maharjan avatar"
                 className="h-full w-full object-cover"
                 priority
@@ -224,6 +225,8 @@ export default function Home() {
                 src="/images/me.jpg"
                 alt="Bibin Maharjan profile"
                 className="h-auto w-full rounded-xl object-cover"
+                width={160}
+                height={160}
                 priority
               />
             </div>
