@@ -175,6 +175,8 @@ export default function Home() {
               <Image
                 src={UserImage}
                 alt="Bibin Maharjan avatar"
+                width={36}
+                height={36}
                 className="h-full w-full object-cover"
                 priority
               />
@@ -224,6 +226,8 @@ export default function Home() {
               <Image
                 src={MyImage}
                 alt="Bibin Maharjan profile"
+                width={160}
+                height={160}
                 className="h-auto w-full rounded-xl object-cover"
                 priority
               />
