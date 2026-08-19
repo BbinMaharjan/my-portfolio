@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+
 import Link from "next/link";
 import {
   BsGithub,
@@ -172,13 +172,12 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <div className="h-9 w-9 overflow-hidden rounded-full border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900">
-              <Image
+              <img
                 src={UserImage}
                 alt="Bibin Maharjan avatar"
                 width={36}
                 height={36}
                 className="h-full w-full object-cover"
-                priority
               />
             </div>
             <p className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200">
@@ -223,13 +222,12 @@ export default function Home() {
         >
           <div className="flex items-start justify-between gap-3">
             <div className="hidden w-full max-w-[160px] overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-panel dark:border-slate-800 dark:bg-slate-900 md:block">
-              <Image
+              <img
                 src={MyImage}
                 alt="Bibin Maharjan profile"
                 width={160}
                 height={160}
                 className="h-auto w-full rounded-xl object-cover"
-                priority
               />
             </div>
             <div>
