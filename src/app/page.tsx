@@ -10,8 +10,7 @@ import {
   BsMoonStarsFill,
   BsSunFill,
 } from "react-icons/bs";
-import UserImage from "../../public/images/user.gif";
-import MyImage from "../../public/images/me.jpg";
+
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
@@ -173,7 +172,7 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <div className="h-9 w-9 overflow-hidden rounded-full border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900">
               <Image
-                src={UserImage}
+                src="/images/user.gif"
                 alt="Bibin Maharjan avatar"
                 className="h-full w-full object-cover"
                 priority
@@ -222,7 +221,7 @@ export default function Home() {
           <div className="flex items-start justify-between gap-3">
             <div className="hidden w-full max-w-[160px] overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-panel dark:border-slate-800 dark:bg-slate-900 md:block">
               <Image
-                src={MyImage}
+                src="/images/me.jpg"
                 alt="Bibin Maharjan profile"
                 className="h-auto w-full rounded-xl object-cover"
                 priority
