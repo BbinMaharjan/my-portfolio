@@ -185,7 +185,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <Link
-              href="https://github.com"
+              href="https://github.com/BbinMaharjan"
               target="_blank"
               className="rounded-lg border border-slate-300 p-2 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:hover:border-brand-400"
               aria-label="GitHub profile"
