@@ -26,75 +26,105 @@ const projects: Project[] = [
   {
     title: "Bank Account Opening System",
     type: "Banking",
-    stack: ["React", "RJSF", "REST APIs", "TypeScript"],
+    stack: ["React", "TypeScript", "RJSF", "Redux-Saga", "REST APIs"],
     challenge:
-      "Handling complex, configurable banking account forms for multiple user types and compliance requirements.",
+      "Digitizing a complex multi-step bank account opening workflow with configurable forms across multiple account types and business requirements.",
     solution:
-      "Built dynamic schema-driven forms with React JSON Schema Form and integrated APIs for automated account creation workflows.",
+      "Led the frontend development from scratch — built the application architecture with React and TypeScript, developed dynamic schema-driven forms using RJSF, reusable components for multiple registration workflows, and managed complex asynchronous workflows with Redux-Saga.",
     impact:
-      "Reduced manual processing overhead while improving form reliability and rollout speed.",
+      "Automated account creation through backend REST API integration, reducing manual processing overhead and improving rollout reliability.",
   },
   {
-    title: "Banking Web Application",
+    title: "Banking Web Application & CMS",
     type: "Banking",
-    stack: ["Next.js", "React Query", "TypeScript", "Security Controls"],
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "TanStack Query",
+      "Redux-Saga",
+      "Material UI",
+    ],
     challenge:
-      "Delivering secure and responsive customer-facing banking interfaces.",
+      "Delivering a responsive customer-facing banking platform along with an administrative CMS for managing banking website content.",
     solution:
-      "Implemented performant data fetching, caching, and robust UI patterns with Next.js and React Query.",
+      "Built responsive and reusable frontend features using Next.js, React, and TypeScript; developed the admin CMS; used TanStack Query for server-state management, Redux-Saga for complex async workflows, and Material UI for component-driven UI.",
     impact:
-      "Improved UX consistency, loading performance, and enterprise readiness.",
-  },
-  {
-    title: "CMS for Banking Platform",
-    type: "CMS",
-    stack: ["React", "Redux-Saga", "Material UI", "OpenAPI"],
-    challenge:
-      "Providing scalable content operations for multiple banking modules.",
-    solution:
-      "Designed a maintainable admin panel architecture with asynchronous side-effects via Redux-Saga.",
-    impact:
-      "Enabled efficient content management with better operational visibility.",
-  },
-  {
-    title: "3D Web Application",
-    type: "3D",
-    stack: ["React", "Three.js", "Real-time UI", "Performance Tuning"],
-    challenge:
-      "Rendering interactive 3D interfaces with smooth real-time updates.",
-    solution:
-      "Optimized scene updates, component boundaries, and interaction loops for stable rendering performance.",
-    impact: "Delivered advanced UI experiences without sacrificing usability.",
+      "Enabled efficient delivery and management of banking-related content with a consistent, maintainable user experience.",
   },
   {
     title: "Employee Health Tracking System",
     type: "Health",
-    stack: ["React", "OIDC", "TypeScript", "Complex Forms"],
+    stack: ["React", "Ant Design", "Redux Toolkit", "TanStack Query", "OIDC"],
     challenge:
-      "Handling secure, data-heavy workflows and compliance-sensitive records.",
+      "Supporting employee health workflows involving complex forms, heavy data management, and secure protected records.",
     solution:
-      "Implemented robust form workflows, authenticated access with OIDC, and scalable UI state handling.",
+      "Built complex forms and data tables, managed client and server state with Redux Toolkit and TanStack Query, developed responsive interfaces with Ant Design, and implemented OIDC-based authentication for secure access.",
     impact:
-      "Improved secure data handling and user efficiency for operations teams.",
+      "Strengthened secure data handling and improved efficiency for health operations teams.",
+  },
+  {
+    title: "3D Web Application & CMS",
+    type: "3D",
+    stack: [
+      "React",
+      "Three.js",
+      "Redux Toolkit",
+      "TanStack Query",
+      "Node.js",
+      "Express.js",
+      "OpenAPI",
+    ],
+    challenge:
+      "Rendering interactive 3D elements in the browser while providing a CMS for managing 3D models, assets, and related content.",
+    solution:
+      "Developed interactive UIs with React and Three.js, built the CMS interface, handled client/server state with Redux Toolkit and TanStack Query, integrated backend services via OpenAPI, and implemented a Node.js/Express feature with full CRUD REST APIs.",
+    impact:
+      "Delivered a performant and scalable 3D experience backed by structured content management.",
   },
   {
     title: "Warehouse Management System",
     type: "Warehouse",
-    stack: ["React", "Dashboards", "Inventory UI", "REST APIs"],
+    stack: ["React", "Material UI", "Redux Toolkit", "TanStack Query"],
     challenge:
-      "Surfacing inventory status and operational metrics clearly across teams.",
+      "Surfacing warehouse operations, inventory tracking, and logistics monitoring clearly across business teams.",
     solution:
-      "Built dashboard-oriented modules for tracking stock movement and key logistics actions.",
+      "Built responsive interfaces and interactive dashboards with React and Material UI, managed state and API communication with Redux Toolkit and TanStack Query, and created reusable components for warehouse workflows.",
     impact:
-      "Increased decision speed through usable data visualization and streamlined flows.",
+      "Increased operational visibility and decision speed through usable dashboards and maintainable components.",
   },
 ];
 
 const skills = {
-  frontend: ["React.js", "Next.js", "JavaScript", "TypeScript", "HTML", "CSS"],
-  state: ["Redux Toolkit", "Redux-Saga", "React Query"],
-  ui: ["Material UI", "Ant Design"],
-  other: ["REST APIs", "OpenAPI", "Git"],
+  frontend: [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Vite",
+  ],
+  state: [
+    "Redux Toolkit",
+    "Redux-Saga",
+    "TanStack Query (React Query)",
+    "Context API",
+  ],
+  ui: ["Material UI (MUI)", "Ant Design", "Responsive Web Design"],
+  backend: ["Node.js", "Express.js", "MongoDB", "MySQL", "RESTful APIs"],
+  api: ["REST APIs", "OpenAPI/Swagger", "Axios", "Fetch API"],
+  ai: [
+    "Prompt Engineering",
+    "AI-Assisted Development",
+    "AI Code Generation (ChatGPT, Claude)",
+  ],
+  tools: ["Git", "GitHub", "GitLab"],
+  practices: [
+    "Code Review",
+    "Performance Optimization",
+    "Component-Based Architecture",
+  ],
 };
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -244,13 +274,15 @@ export default function Home() {
             </div>
           </div>
           <p className="max-w-2xl text-lg text-slate-700 dark:text-slate-300">
-            Building scalable, high-performance web applications with modern
-            frontend technologies.
+            Designing and developing enterprise web applications with React,
+            Next.js, TypeScript, and modern frontend technologies.
           </p>
           <p className="max-w-2xl text-slate-600 dark:text-slate-400">
-            Frontend engineer with 4+ years of experience at AMNIL Technologies
-            delivering secure and enterprise-grade platforms across banking,
-            CMS, health, and warehouse domains.
+            Frontend engineer with 4+ years of experience building complex
+            forms, reusable UI components, dashboards, and responsive
+            applications across banking, content management, warehouse
+            management, healthcare, and 3D platforms — with a focus on
+            maintainable, scalable, and user-friendly applications.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
@@ -287,7 +319,7 @@ export default function Home() {
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-panel dark:border-slate-800 dark:bg-slate-900">
             <p className="text-sm text-slate-500">Case Studies</p>
             <p className="mt-2 text-3xl font-bold">
-              <CountUp end={6} />
+              <CountUp end={5} />
             </p>
             <p className="text-xs text-slate-500">Production-grade projects</p>
           </div>
@@ -310,16 +342,18 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold">About Me</h2>
           <p className="mt-4 text-slate-600 dark:text-slate-300">
-            I bring 4+ years of hands-on frontend engineering experience at
-            AMNIL Technologies, building enterprise web applications with a
-            focus on scalability, reliability, and usability.
+            Frontend engineer with 4+ years of hands-on experience at AMNIL
+            Technologies, building enterprise web applications with strong
+            experience in Redux Toolkit, Redux-Saga, TanStack Query, REST API
+            integration, and component-based architecture — focused on
+            maintainable, scalable, and user-friendly applications.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {[
               "Enterprise-level application development",
-              "Clean, maintainable and scalable codebases",
-              "Complex UI/UX problem solving",
-              "Cross-functional team collaboration",
+              "Complex forms, dashboards & reusable components",
+              "Strong team player with good communication skills",
+              "Self-motivated, quick learner under pressure & deadlines",
             ].map((item) => (
               <div
                 key={item}
@@ -334,12 +368,16 @@ export default function Home() {
 
       <section id="skills" className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="mb-8 text-2xl font-bold">Skills</h2>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries({
-            "Frontend Technologies": skills.frontend,
+            Frontend: skills.frontend,
             "State Management": skills.state,
-            "UI Libraries": skills.ui,
-            Other: skills.other,
+            "UI & Styling": skills.ui,
+            "Backend & Databases": skills.backend,
+            "API Integration": skills.api,
+            "AI Technologies": skills.ai,
+            "Version Control": skills.tools,
+            Practices: skills.practices,
           }).map(([group, values]) => (
             <motion.div
               key={group}
@@ -482,27 +520,70 @@ export default function Home() {
           viewport={{ once: true }}
           className="rounded-2xl border border-slate-200 bg-white p-8 shadow-panel dark:border-slate-800 dark:bg-slate-900"
         >
-          <h3 className="text-xl font-semibold">AMNIL Technologies</h3>
+          <h3 className="text-xl font-semibold">
+            Frontend Developer — AMNIL Technologies
+          </h3>
           <p className="mt-1 text-sm text-slate-500">
-            Intern to Software Engineer • Kathmandu, Nepal
+            Started as MERN Stack Development Intern, progressed to full-time
+            Frontend Developer • Kathmandu, Nepal
           </p>
           <ul className="mt-5 space-y-3 text-slate-700 dark:text-slate-300">
             <li>
-              Built scalable frontend systems for enterprise-grade web
-              platforms.
+              Contributed to the development of multiple enterprise web
+              applications across banking, CMS, health, warehouse, and 3D
+              domains.
             </li>
             <li>
-              Integrated REST APIs and OpenAPI-driven services across domains.
+              Built complex forms, reusable UI components, dashboards, and
+              responsive applications using React, Next.js, and TypeScript.
             </li>
             <li>
-              Improved performance through rendering and data-fetching
-              optimizations.
+              Managed application and server state with Redux Toolkit,
+              Redux-Saga, and TanStack Query.
             </li>
             <li>
-              Implemented clean, consistent, and user-centric UI/UX solutions.
+              Integrated frontend applications with backend REST APIs and
+              OpenAPI-driven services.
+            </li>
+            <li>
+              Collaborated with cross-functional teams to translate business
+              requirements into functional applications.
             </li>
           </ul>
         </motion.div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-slate-200 bg-white p-8 shadow-panel dark:border-slate-800 dark:bg-slate-900"
+          >
+            <h3 className="text-xl font-semibold">Education</h3>
+            <p className="mt-4 font-medium">
+              BSc (HONS) in Computing — UCSI University
+            </p>
+            <p className="mt-1 text-sm text-slate-500">
+              Institute of Management Science (IIMS), affiliated to UCSI
+              University, Malaysia • Putalisadak, Kathmandu
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-slate-200 bg-white p-8 shadow-panel dark:border-slate-800 dark:bg-slate-900"
+          >
+            <h3 className="text-xl font-semibold">Training</h3>
+            <p className="mt-4 font-medium">
+              MERN Stack Development Training — AMNIL Technologies
+            </p>
+            <p className="mt-1 text-sm text-slate-500">
+              3-month training starting August 2021 • Jhamsikhel, Kathmandu —
+              hands-on experience in MongoDB, Express.js, React, and Node.js
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       <section id="contact" className="mx-auto max-w-6xl px-6 pb-20 pt-16">
@@ -522,6 +603,17 @@ export default function Home() {
             </a>
             <p className="mt-5 text-sm text-slate-500">Location</p>
             <p className="mt-2 font-medium">Kirtipur, Kathmandu, Nepal</p>
+            <p className="mt-5 text-sm text-slate-500">Website</p>
+            <a
+              href="https://www.bibinmaharjan.com.np"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block font-medium text-brand-600 dark:text-brand-300"
+            >
+              www.bibinmaharjan.com.np
+            </a>
+            <p className="mt-5 text-sm text-slate-500">Languages</p>
+            <p className="mt-2 font-medium">Newari, Nepali, English</p>
           </div>
           <form
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-panel dark:border-slate-800 dark:bg-slate-900"

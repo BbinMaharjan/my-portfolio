@@ -10,11 +10,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bibin Maharjan | Software Engineer",
   description:
-    "Portfolio of Bibin Maharjan, Software Engineer with 4+ years of frontend experience in enterprise applications.",
+    "Portfolio of Bibin Maharjan, Frontend Engineer with 4+ years of experience building enterprise web applications using React, Next.js, and TypeScript across banking, CMS, healthcare, warehouse, and 3D platforms.",
   openGraph: {
     title: "Bibin Maharjan | Software Engineer",
     description:
-      "Building scalable, high-performance web applications with modern frontend technologies.",
+      "Designing and developing enterprise web applications with React, Next.js, TypeScript, and modern frontend technologies.",
     type: "website",
     locale: "en_US",
   },
