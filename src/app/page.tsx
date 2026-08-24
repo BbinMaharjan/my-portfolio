@@ -157,7 +157,7 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<ProjectType>("All");
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
