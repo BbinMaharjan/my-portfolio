@@ -9,9 +9,15 @@ import {
   BsLinkedin,
   BsMoonStarsFill,
   BsSunFill,
+  BsBoxArrowUpRight,
 } from "react-icons/bs";
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
+
+type ProjectLink = {
+  label: string;
+  url: string;
+};
 
 type Project = {
   title: string;
@@ -20,6 +26,7 @@ type Project = {
   challenge: string;
   solution: string;
   impact: string;
+  links: ProjectLink[];
 };
 
 const projects: Project[] = [
@@ -33,6 +40,9 @@ const projects: Project[] = [
       "Led the frontend development from scratch — built the application architecture with React and TypeScript, developed dynamic schema-driven forms using RJSF, reusable components for multiple registration workflows, and managed complex asynchronous workflows with Redux-Saga.",
     impact:
       "Automated account creation through backend REST API integration, reducing manual processing overhead and improving rollout reliability.",
+    links: [
+      { label: "Global IME Bank Online Account Opening", url: "https://easyaccount.gibl.com.np/" },
+    ],
   },
   {
     title: "Banking Web Application & CMS",
@@ -51,6 +61,11 @@ const projects: Project[] = [
       "Built responsive and reusable frontend features using Next.js, React, and TypeScript; developed the admin CMS; used TanStack Query for server-state management, Redux-Saga for complex async workflows, and Material UI for component-driven UI.",
     impact:
       "Enabled efficient delivery and management of banking-related content with a consistent, maintainable user experience.",
+    links: [
+      { label: "Global IME Bank Website", url: "https://www.globalimebank.com/" },
+      { label: "Nabil Bank – nBank", url: "https://nbankbynabil.nabilbank.com/" },
+      { label: "Tisa Bank Website", url: "https://www.tisabank.com.pg/" },
+    ],
   },
   {
     title: "Employee Health Tracking System",
@@ -62,6 +77,7 @@ const projects: Project[] = [
       "Built complex forms and data tables, managed client and server state with Redux Toolkit and TanStack Query, developed responsive interfaces with Ant Design, and implemented OIDC-based authentication for secure access.",
     impact:
       "Strengthened secure data handling and improved efficiency for health operations teams.",
+    links: [],
   },
   {
     title: "3D Web Application & CMS",
@@ -81,6 +97,9 @@ const projects: Project[] = [
       "Developed interactive UIs with React and Three.js, built the CMS interface, handled client/server state with Redux Toolkit and TanStack Query, integrated backend services via OpenAPI, and implemented a Node.js/Express feature with full CRUD REST APIs.",
     impact:
       "Delivered a performant and scalable 3D experience backed by structured content management.",
+    links: [
+      { label: "Echelon Visualizer 3D", url: "https://echelonvisualizer.masonryiq.com/" },
+    ],
   },
   {
     title: "Warehouse Management System",
@@ -92,6 +111,7 @@ const projects: Project[] = [
       "Built responsive interfaces and interactive dashboards with React and Material UI, managed state and API communication with Redux Toolkit and TanStack Query, and created reusable components for warehouse workflows.",
     impact:
       "Increased operational visibility and decision speed through usable dashboards and maintainable components.",
+    links: [],
   },
 ];
 
@@ -481,6 +501,22 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+              {project.links.length > 0 && (
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {project.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-md border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 transition hover:bg-brand-100 hover:border-brand-400 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+                    >
+                      {link.label}
+                      <BsBoxArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              )}
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/60">
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
