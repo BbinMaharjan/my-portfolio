@@ -11,6 +11,7 @@ import {
   BsSunFill,
   BsBoxArrowUpRight,
 } from "react-icons/bs";
+import NodeGraphBackground from "@/components/NodeGraphBackground";
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
@@ -214,7 +215,8 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,120,255,0.18),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(56,120,255,0.12),transparent_38%)]" />
+      <NodeGraphBackground />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,120,255,0.12),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(56,120,255,0.08),transparent_38%)]" />
 
       <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
