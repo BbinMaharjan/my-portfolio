@@ -31,3 +31,36 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Custom scrollbar with brand color */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-500 rounded-full hover:bg-brand-600 dark:hover:bg-brand-400;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-slate-100 dark:bg-slate-900;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.brand.500') theme('colors.slate.100');
+}
+
+.dark * {
+  scrollbar-color: theme('colors.brand.400') theme('colors.slate.900');
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

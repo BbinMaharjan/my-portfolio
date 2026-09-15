@@ -42,7 +42,10 @@ const projects: Project[] = [
     impact:
       "Automated account creation through backend REST API integration, reducing manual processing overhead and improving rollout reliability.",
     links: [
-      { label: "Global IME Bank Online Account Opening", url: "https://easyaccount.gibl.com.np/" },
+      {
+        label: "Global IME Bank Online Account Opening",
+        url: "https://easyaccount.gibl.com.np/",
+      },
     ],
   },
   {
@@ -63,8 +66,14 @@ const projects: Project[] = [
     impact:
       "Enabled efficient delivery and management of banking-related content with a consistent, maintainable user experience.",
     links: [
-      { label: "Global IME Bank Website", url: "https://www.globalimebank.com/" },
-      { label: "Nabil Bank – nBank", url: "https://nbankbynabil.nabilbank.com/" },
+      {
+        label: "Global IME Bank Website",
+        url: "https://www.globalimebank.com/",
+      },
+      {
+        label: "Nabil Bank – nBank",
+        url: "https://nbankbynabil.nabilbank.com/",
+      },
       { label: "Tisa Bank Website", url: "https://www.tisabank.com.pg/" },
     ],
   },
@@ -99,7 +108,10 @@ const projects: Project[] = [
     impact:
       "Delivered a performant and scalable 3D experience backed by structured content management.",
     links: [
-      { label: "Echelon Visualizer 3D", url: "https://echelonvisualizer.masonryiq.com/" },
+      {
+        label: "Echelon Visualizer 3D",
+        url: "https://echelonvisualizer.masonryiq.com/",
+      },
     ],
   },
   {
@@ -190,6 +202,33 @@ export default function Home() {
     document.documentElement.classList.toggle("dark", useDark);
   }, []);
 
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+      const hours = now.getHours();
+      const hours12 = hours % 12 || 12;
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      const seconds = now.getSeconds().toString().padStart(2, "0");
+      const ampm = hours >= 12 ? "PM" : "AM";
+
+      const datetimeEl = document.getElementById("datetime-display");
+
+      if (datetimeEl) {
+        datetimeEl.innerHTML = `${dateStr} | ${hours12}:${minutes}:<span style="animation: blink 1s infinite">${seconds}</span> ${ampm}`;
+      }
+    };
+
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const toggleTheme = () => {
     const nextTheme = !darkMode;
     setDarkMode(nextTheme);
@@ -214,11 +253,11 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative">
+    <main className="relative pt-16">
       <NodeGraphBackground />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,120,255,0.12),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(56,120,255,0.08),transparent_38%)]" />
 
-      <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <div className="h-9 w-9 overflow-hidden rounded-full border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900">
@@ -234,6 +273,14 @@ export default function Home() {
             <p className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200">
               Bibin Maharjan
             </p>
+          </div>
+          <div className="flex-1 flex justify-center px-4">
+            <div className="text-center">
+              <p
+                className="text-lg font-mono text-brand-500 dark:text-brand-400 tracking-wide font-bold"
+                id="datetime-display"
+              ></p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -514,7 +561,10 @@ export default function Home() {
                       className="inline-flex items-center gap-1.5 rounded-md border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-700 transition hover:bg-brand-100 hover:border-brand-400 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
                     >
                       {link.label}
-                      <BsBoxArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                      <BsBoxArrowUpRight
+                        className="h-3 w-3"
+                        aria-hidden="true"
+                      />
                     </a>
                   ))}
                 </div>
@@ -692,7 +742,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-zinc-800 py-6 text-center text-sm text-zinc-500">
+      <footer className="border-t border-slate-200/70 bg-slate-50/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80 py-6 text-center text-sm text-slate-500 dark:text-slate-400">
         © {new Date().getFullYear()} Bibin Maharjan — Software Engineer
       </footer>
     </main>
