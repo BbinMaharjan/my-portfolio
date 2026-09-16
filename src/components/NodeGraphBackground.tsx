@@ -87,7 +87,10 @@ export default function NodeGraphBackground() {
     const lineGeometry = new THREE.BufferGeometry();
     const maxLines = nodeCount * 6;
     const linePositions = new Float32Array(maxLines * 6);
-    lineGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
+    lineGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(linePositions, 3),
+    );
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
 
@@ -103,19 +106,33 @@ export default function NodeGraphBackground() {
     let currentCameraX = 0;
     let currentCameraY = 0;
 
+    // Reused objects for the mouse -> world-space raycast, computed once per
+    // frame instead of allocating new Vector3/Raycaster instances every tick.
+    const raycaster = new THREE.Raycaster();
+    const pointerNDC = new THREE.Vector2();
+    // Plane at z = 0, since that's roughly the center of the node cluster's
+    // z-range (nodes are distributed in a sphere of radius `spread` around
+    // the origin). Intersecting the mouse ray with this plane gives a world
+    // position that's actually near the nodes, unlike unprojecting a fixed
+    // NDC z value (which lands at an arbitrary, usually-irrelevant depth).
+    const mousePlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    const mouseWorld = new THREE.Vector3();
+    const toMouse = new THREE.Vector3();
+    const toOrigin = new THREE.Vector3();
+
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
 
       const { width, height } = sizeRef.current;
       const { x: mouseX, y: mouseY } = mouseRef.current;
 
-      const mouse = new THREE.Vector3(
-        (mouseX / width) * 2 - 1,
-        -(mouseY / height) * 2 + 1,
-        0
-      ).unproject(camera);
+      pointerNDC.set((mouseX / width) * 2 - 1, -(mouseY / height) * 2 + 1);
+      raycaster.setFromCamera(pointerNDC, camera);
 
-      const mouseWorld = new THREE.Vector3(mouse.x, mouse.y, 0);
+      // If the ray is parallel to the plane (shouldn't normally happen here)
+      // intersectPlane returns null and leaves mouseWorld untouched from the
+      // previous frame, which is a safe fallback.
+      raycaster.ray.intersectPlane(mousePlane, mouseWorld);
 
       targetCameraX = (mouseX / width - 0.5) * 4;
       targetCameraY = (mouseY / height - 0.5) * 4;
@@ -130,7 +147,7 @@ export default function NodeGraphBackground() {
       for (let i = 0; i < nodeCount; i++) {
         const node = nodes[i];
 
-        const toMouse = new THREE.Vector3().subVectors(node.position, mouseWorld);
+        toMouse.subVectors(node.position, mouseWorld);
         const distToMouse = toMouse.length();
 
         if (distToMouse < repelRadius && distToMouse > 0.001) {
@@ -139,7 +156,7 @@ export default function NodeGraphBackground() {
           node.velocity.add(toMouse);
         }
 
-        const toOrigin = new THREE.Vector3().subVectors(node.originalPosition, node.position);
+        toOrigin.subVectors(node.originalPosition, node.position);
         node.velocity.add(toOrigin.multiplyScalar(springStrength));
 
         node.velocity.multiplyScalar(damping);
@@ -158,7 +175,8 @@ export default function NodeGraphBackground() {
 
           if (dist < connectionDistance && lineIndex < maxLines) {
             const alpha = 1 - dist / connectionDistance;
-            (lineMaterial as THREE.LineBasicMaterial).opacity = 0.08 + alpha * 0.18;
+            (lineMaterial as THREE.LineBasicMaterial).opacity =
+              0.08 + alpha * 0.18;
 
             linePositions[lineIndex * 6] = node.position.x;
             linePositions[lineIndex * 6 + 1] = node.position.y;
@@ -196,12 +214,12 @@ export default function NodeGraphBackground() {
       renderer.setSize(newWidth, newHeight);
     };
 
-    container.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
     return () => {
       if (animationIdRef.current) cancelAnimationFrame(animationIdRef.current);
-      container.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       geometry.dispose();
       material.dispose();
@@ -212,5 +230,11 @@ export default function NodeGraphBackground() {
     };
   }, []);
 
-  return <div ref={containerRef} className="fixed inset-0 -z-10" aria-hidden="true" />;
+  return (
+    <div
+      ref={containerRef}
+      className="fixed inset-0 -z-10"
+      aria-hidden="true"
+    />
+  );
 }
