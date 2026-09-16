@@ -42,18 +42,14 @@ export default function NodeGraphBackground() {
     const nodeCount = 80;
     const spread = 55;
     const connectionDistance = 28;
-    const repelRadius = 45;
-    const repelStrength = 0.08;
-    const springStrength = 0.025;
-    const damping = 0.88;
+    const repelRadius = 60;
+    const repelStrength = 0.16;
+    const springStrength = 0.02;
+    const damping = 0.9;
 
     const geometry = new THREE.IcosahedronGeometry(0.45, 0);
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x3878ff,
-      transparent: true,
-      opacity: 0.65,
-      depthWrite: false,
-    });
+    const baseColor = new THREE.Color(0x3878ff);
+    const hotColor = new THREE.Color(0xaad4ff);
 
     for (let i = 0; i < nodeCount; i++) {
       const theta = Math.random() * Math.PI * 2;
@@ -65,6 +61,14 @@ export default function NodeGraphBackground() {
       const z = r * Math.cos(phi);
 
       const position = new THREE.Vector3(x, y, z);
+      // Each node gets its own material instance (rather than sharing one)
+      // so color/opacity can be animated per-node based on mouse proximity.
+      const material = new THREE.MeshBasicMaterial({
+        color: baseColor.clone(),
+        transparent: true,
+        opacity: 0.65,
+        depthWrite: false,
+      });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(position);
       scene.add(mesh);
@@ -119,6 +123,9 @@ export default function NodeGraphBackground() {
     const mouseWorld = new THREE.Vector3();
     const toMouse = new THREE.Vector3();
     const toOrigin = new THREE.Vector3();
+    const tmpColor = new THREE.Color();
+    const mouseLocal = new THREE.Vector3();
+    let ambientRotation = 0;
 
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
@@ -134,6 +141,18 @@ export default function NodeGraphBackground() {
       // previous frame, which is a safe fallback.
       raycaster.ray.intersectPlane(mousePlane, mouseWorld);
 
+      ambientRotation += 0.0006;
+      scene.rotation.y = ambientRotation;
+      scene.rotation.x = Math.sin(ambientRotation * 0.5) * 0.08;
+      scene.updateMatrixWorld(true);
+
+      // node.position is local to `scene`, but mouseWorld came from a
+      // raycast against a plane defined in world space. Since the scene now
+      // ambiently rotates, world and local space diverge — convert the
+      // mouse point into scene-local space before comparing it to nodes.
+      mouseLocal.copy(mouseWorld);
+      scene.worldToLocal(mouseLocal);
+
       targetCameraX = (mouseX / width - 0.5) * 4;
       targetCameraY = (mouseY / height - 0.5) * 4;
       currentCameraX += (targetCameraX - currentCameraX) * 0.02;
@@ -147,11 +166,15 @@ export default function NodeGraphBackground() {
       for (let i = 0; i < nodeCount; i++) {
         const node = nodes[i];
 
-        toMouse.subVectors(node.position, mouseWorld);
+        toMouse.subVectors(node.position, mouseLocal);
         const distToMouse = toMouse.length();
 
         if (distToMouse < repelRadius && distToMouse > 0.001) {
-          const force = (repelRadius - distToMouse) * repelStrength;
+          // Force falls off with the square of proximity instead of
+          // linearly, so nodes right under the cursor get a much sharper
+          // kick while distant ones barely feel it.
+          const t = 1 - distToMouse / repelRadius;
+          const force = t * t * repelStrength * repelRadius;
           toMouse.normalize().multiplyScalar(force);
           node.velocity.add(toMouse);
         }
@@ -163,11 +186,16 @@ export default function NodeGraphBackground() {
         node.position.add(node.velocity);
         node.mesh.position.copy(node.position);
 
-        const scale = 0.7 + 0.3 * Math.min(distToMouse / repelRadius, 1);
+        // proximity: 0 = far from cursor, 1 = right on top of it
+        const proximity = 1 - Math.min(distToMouse / repelRadius, 1);
+
+        const scale = 0.7 + 0.9 * proximity;
         node.mesh.scale.setScalar(scale);
 
-        const opacity = 0.35 + 0.5 * Math.min(distToMouse / repelRadius, 1);
-        (node.mesh.material as THREE.MeshBasicMaterial).opacity = opacity;
+        const nodeMaterial = node.mesh.material as THREE.MeshBasicMaterial;
+        nodeMaterial.opacity = 0.35 + 0.65 * proximity;
+        tmpColor.copy(baseColor).lerp(hotColor, proximity);
+        nodeMaterial.color.copy(tmpColor);
 
         for (let j = i + 1; j < nodeCount; j++) {
           const other = nodes[j];
@@ -222,7 +250,9 @@ export default function NodeGraphBackground() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       geometry.dispose();
-      material.dispose();
+      nodes.forEach((node) => {
+        (node.mesh.material as THREE.MeshBasicMaterial).dispose();
+      });
       lineGeometry.dispose();
       lineMaterial.dispose();
       renderer.dispose();
