@@ -205,12 +205,11 @@ export default function Home() {
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
-      const dateStr = now.toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      });
+      const weekday = now.toLocaleDateString("en-US", { weekday: "long" });
+      const monthLong = now.toLocaleDateString("en-US", { month: "long" });
+      const monthShort = now.toLocaleDateString("en-US", { month: "short" });
+      const day = now.getDate();
+      const year = now.getFullYear();
       const hours = now.getHours();
       const hours12 = hours % 12 || 12;
       const minutes = now.getMinutes().toString().padStart(2, "0");
@@ -220,7 +219,7 @@ export default function Home() {
       const datetimeEl = document.getElementById("datetime-display");
 
       if (datetimeEl) {
-        datetimeEl.innerHTML = `${dateStr} | ${hours12}:${minutes}:<span style="animation: blink 1s infinite">${seconds}</span> ${ampm}`;
+        datetimeEl.innerHTML = `<span class="hidden md:inline">${weekday}, </span><span class="hidden sm:inline">${monthLong}</span><span class="sm:hidden">${monthShort}</span> ${day}, ${year} | ${hours12}:${minutes}:<span style="animation: blink 1s infinite">${seconds}</span> ${ampm}`;
       }
     };
 
@@ -253,13 +252,13 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative pt-16">
+    <main className="relative pt-20 sm:pt-16">
       <NodeGraphBackground />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,120,255,0.12),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(56,120,255,0.08),transparent_38%)]" />
 
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6 sm:py-4">
+          <div className="flex shrink-0 items-center gap-2">
             <div className="h-9 w-9 overflow-hidden rounded-full border border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900">
               <Image
                 src="/images/user.gif"
@@ -270,23 +269,23 @@ export default function Home() {
                 priority
               />
             </div>
-            <p className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200">
+            <p className="hidden text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200 sm:block">
               Bibin Maharjan
             </p>
           </div>
-          <div className="flex-1 flex justify-center px-4">
+          <div className="hidden min-w-0 flex-1 justify-center px-2 sm:flex sm:px-4">
             <div className="text-center">
               <p
-                className="text-lg font-mono text-brand-500 dark:text-brand-400 tracking-wide font-bold"
+                className="break-words text-xs font-mono font-bold leading-tight tracking-wide text-brand-500 dark:text-brand-400 sm:text-sm md:text-lg"
                 id="datetime-display"
               ></p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Link
               href="https://github.com/BbinMaharjan"
               target="_blank"
-              className="rounded-lg border border-slate-300 p-2 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:hover:border-brand-400"
+              className="rounded-lg border border-slate-300 p-1.5 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:hover:border-brand-400 sm:p-2"
               aria-label="GitHub profile"
             >
               <BsGithub />
@@ -294,7 +293,7 @@ export default function Home() {
             <Link
               href="https://www.linkedin.com/in/bbinmaharjan"
               target="_blank"
-              className="rounded-lg border border-slate-300 p-2 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:hover:border-brand-400"
+              className="rounded-lg border border-slate-300 p-1.5 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:hover:border-brand-400 sm:p-2"
               aria-label="LinkedIn profile"
             >
               <BsLinkedin />
@@ -302,7 +301,7 @@ export default function Home() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="rounded-lg border border-slate-300 p-2 transition hover:border-brand-500 dark:border-slate-700"
+              className="rounded-lg border border-slate-300 p-1.5 transition hover:border-brand-500 dark:border-slate-700 sm:p-2"
               aria-label="Toggle dark and light mode"
             >
               {darkMode ? <BsSunFill /> : <BsMoonStarsFill />}
@@ -318,8 +317,8 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <div className="flex items-start justify-between gap-3">
-            <div className="hidden w-full max-w-[160px] overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-panel dark:border-slate-800 dark:bg-slate-900 md:block">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <div className="w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-panel dark:border-slate-800 dark:bg-slate-900 sm:w-40 md:w-full md:max-w-[160px]">
               <Image
                 src="/images/me.jpg"
                 alt="Bibin Maharjan profile"
@@ -330,7 +329,7 @@ export default function Home() {
                 priority
               />
             </div>
-            <div>
+            <div className="text-center sm:text-left">
               <h1 className="text-4xl font-bold leading-tight text-slate-900 dark:text-white md:text-6xl">
                 Bibin
               </h1>
