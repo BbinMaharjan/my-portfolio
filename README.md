@@ -2,7 +2,7 @@
 
 A modern, single-page developer portfolio built with Next.js, featuring smooth animations, dark/light theme toggle, and project case studies.
 
-<img src= "/public/screen/capture.png" width="1000px" height="1000px">
+<img src="/public/screen/capture.png" width="1000px" height="1000px" alt="Portfolio preview" />
 
 ### Live
 
@@ -15,14 +15,71 @@ https://bibinmaharjan.com.np
 - **Styling:** Tailwind CSS + styled-components
 - **Animations:** Framer Motion
 - **Icons:** react-icons (Bootstrap)
+- **3D:** Three.js
 - **Analytics:** Google Analytics + Microsoft Clarity
 
 ## Features
 
-- Responsive single-page design
+- Responsive single-page design (mobile, tablet, and desktop)
 - Dark/light theme with localStorage persistence
 - Scroll-triggered animations
 - Filterable project case studies
 - Animated stat counters
 - Contact form with mailto integration
 - SEO optimized with OpenGraph metadata
+- Live date and time display in the header (desktop)
+- Responsive header and hero image layout for mobile view
+- Interactive 3D node-graph background
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Install
+
+```bash
+npm install
+```
+
+### Run in development
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000 in your browser.
+
+### Build for production
+
+```bash
+npm run build
+npm run start
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+  app/
+    page.tsx          # Main single-page portfolio
+    page.styled.ts    # Styled-components
+    globals.css       # Global styles and animations
+    layout.tsx        # Root layout and metadata
+  components/
+    NodeGraphBackground.tsx
+  lib/
+    registry.tsx
+```
+
+## License
+
+This project is open source and available for personal use.
