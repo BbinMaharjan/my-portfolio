@@ -12,6 +12,7 @@ import {
   BsBoxArrowUpRight,
 } from "react-icons/bs";
 import NodeGraphBackground from "@/components/NodeGraphBackground";
+import { getYearsOfExperience } from "@/lib/experience";
 
 type ProjectType = "All" | "Banking" | "CMS" | "3D" | "Health" | "Warehouse";
 
@@ -191,6 +192,7 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<ProjectType>("All");
   const [darkMode, setDarkMode] = useState(false);
+  const yearsOfExperience = useMemo(() => getYearsOfExperience(), []);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -346,10 +348,10 @@ export default function Home() {
             Next.js, TypeScript, and modern frontend technologies.
           </p>
           <p className="max-w-2xl text-slate-600 dark:text-slate-400">
-            Frontend engineer with 4+ years of experience building complex
-            forms, reusable UI components, dashboards, and responsive
-            applications across banking, content management, warehouse
-            management, healthcare, and 3D platforms — with a focus on
+            Frontend engineer with {yearsOfExperience}+ years of experience
+            building complex forms, reusable UI components, dashboards, and
+            responsive applications across banking, content management,
+            warehouse management, healthcare, and 3D platforms — with a focus on
             maintainable, scalable, and user-friendly applications.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -378,7 +380,7 @@ export default function Home() {
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-panel dark:border-slate-800 dark:bg-slate-900">
             <p className="text-sm text-slate-500">Experience</p>
             <p className="mt-2 text-3xl font-bold">
-              <CountUp end={4} suffix="+" />
+              <CountUp end={yearsOfExperience} suffix="+" />
             </p>
             <p className="text-xs text-slate-500">
               Years in frontend engineering
@@ -410,11 +412,12 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold">About Me</h2>
           <p className="mt-4 text-slate-600 dark:text-slate-300">
-            Frontend engineer with 4+ years of hands-on experience at AMNIL
-            Technologies, building enterprise web applications with strong
-            experience in Redux Toolkit, Redux-Saga, TanStack Query, REST API
-            integration, and component-based architecture — focused on
-            maintainable, scalable, and user-friendly applications.
+            Frontend engineer with {yearsOfExperience}+ years of hands-on
+            experience at AMNIL Technologies, building enterprise web
+            applications with strong experience in Redux Toolkit, Redux-Saga,
+            TanStack Query, REST API integration, and component-based
+            architecture — focused on maintainable, scalable, and user-friendly
+            applications.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {[

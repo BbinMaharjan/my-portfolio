@@ -4,13 +4,16 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
+import { getYearsOfExperience } from "@/lib/experience";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const yearsOfExperience = getYearsOfExperience();
 
 export const metadata: Metadata = {
   title: "Bibin Maharjan | Software Engineer",
   description:
-    "Portfolio of Bibin Maharjan, Frontend Engineer with 4+ years of experience building enterprise web applications using React, Next.js, and TypeScript across banking, CMS, healthcare, warehouse, and 3D platforms.",
+    `Portfolio of Bibin Maharjan, Frontend Engineer with ${yearsOfExperience}+ years of experience building enterprise web applications using React, Next.js, and TypeScript across banking, CMS, healthcare, warehouse, and 3D platforms.`,
   openGraph: {
     title: "Bibin Maharjan | Software Engineer",
     description:
